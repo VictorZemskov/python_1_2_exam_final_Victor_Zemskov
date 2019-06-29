@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Автор{% endblock %}
+{% block menu %}
+
+{% endblock %}
+{% block content %}
+    <h1>{{ author.name }}</h1>
+    <p>{{ author.biography }}</p>
+
+{#    <h5>Задачи <a href="{% url 'issue_create' project.pk %}">(+)</a></h5>#}
+{#    <ul id="issue_list">#}
+{#    {% for issue in project.issues.all %}#}
+{#        <li class="ml-5">{{ issue.title }}({{ issue.get_status_display }})</li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+    <h4>Книги:</h4>
+    {% for book in author.books.all %}
+        <h5 class="ml-5">{{ book.name }} ({{ book.year_publishing }})</h5>
+    {% endfor %}
+{#    <h5>работа</h5>#}
+{#    {% for work in project.work.all %}#}
+{#        <p class="ml-5">{{ work.programmer.first_name }} {{ work.start_date }} ({{ work.end_date }})</p>#}
+{#    {% endfor %}#}
+{% endblock %}

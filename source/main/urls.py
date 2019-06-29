@@ -13,9 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from webapp.views import AuthorListView, AuthorDetailView, AuthorCreateView, AuthorUpdateView, soft_delete_author,\
+                         BookListView, BookDetailView, BookCreateView, BookUpdateView, soft_delete_book
+from accounts.views import login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', AuthorListView.as_view(), name='author_list'),
+    path('authors/<int:pk>', AuthorDetailView.as_view(), name='author_detail'),
+    path('authors/create', AuthorCreateView.as_view(), name='author_create'),
+    path('accounts/login', login_view, name='login'),
+    path('accounts/logout', logout_view, name='logout'),
+    path('authors/<int:pk>/update', AuthorUpdateView.as_view(), name='author_update'),
+    path('authors/<int:pk>/delete', soft_delete_author, name='author_delete'),
+    path('books', BookListView.as_view(), name='book_list'),
+    path('authors/<int:pk>/books/create', BookCreateView.as_view(), name='book_create'),
+    path('issues/<int:pk>/', BookDetailView.as_view(), name='book_detail'),
+    path('books/<int:pk>/delete', soft_delete_book, name='book_delete'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
