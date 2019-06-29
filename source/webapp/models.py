@@ -15,5 +15,14 @@ class Author(models.Model):
     photo = models.ImageField(null=True, blank=True, verbose_name='Фотография')
 
 
+class Book(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Название')
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books', verbose_name='Автор')
+    year_publishing = models.CharField(max_length=255, verbose_name='Год издания')
+    file = models.FileField(null=True, blank=True, verbose_name='Файл')
+    cover = models.ImageField(null=True, blank=True, verbose_name='Обложка')
+    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
+
+
 
 
