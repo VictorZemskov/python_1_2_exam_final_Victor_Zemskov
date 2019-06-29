@@ -16,6 +16,8 @@
             <h4><a href="{% url 'book_detail' book.pk %}">{{ book.name }}</a></h4>
             <p>{{ book.year_publishing }}</p>
             <p><a href="{% url 'author_detail' book.author.pk %}">{{ book.author }}</a></p>
+            <button type="button" class="btn btn-primary" id="issue_submit">Добавить на книжную полку</button>
+            <hr>
             {% if request.user.is_authenticated %}
                 <a href="{% url 'book_update' book.pk %}">Изменить</a>
                 <a href="{% url 'book_delete' book.pk %}">Удалить</a>

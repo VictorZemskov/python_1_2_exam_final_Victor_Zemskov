@@ -10,19 +10,12 @@
     <p>Файл - {{ book.file }}</p>
     <p>Обложка - {{ book.cover }}</p>
     <p>Описание - {{ book.cover }}</p>
-
-{#    <h5>Задачи <a href="{% url 'issue_create' project.pk %}">(+)</a></h5>#}
-{#    <ul id="issue_list">#}
-{#    {% for issue in project.issues.all %}#}
-{#        <li class="ml-5">{{ issue.title }}({{ issue.get_status_display }})</li>#}
-{#    {% endfor %}#}
-{#    </ul>#}
-{#    <h4>Книги:</h4>#}
-{#    {% for book in author.books.all %}#}
-{#        <h5 class="ml-5">{{ book.name }} ({{ book.year_publishing }})</h5>#}
-{#    {% endfor %}#}
-{#    <h5>работа</h5>#}
-{#    {% for work in project.work.all %}#}
-{#        <p class="ml-5">{{ work.programmer.first_name }} {{ work.start_date }} ({{ work.end_date }})</p>#}
-{#    {% endfor %}#}
+    <button type="button" class="btn btn-primary" id="issue_submit">Добавить на книжную полку</button>
+    <hr>
+    <h3>Оставить отзыв ?</h3>
+    <form action="{% url 'review_create' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn, btn-primary">Сохранить</button>
+    </form>
 {% endblock %}

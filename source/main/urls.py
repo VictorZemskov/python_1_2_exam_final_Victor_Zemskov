@@ -18,7 +18,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from webapp.views import AuthorListView, AuthorDetailView, AuthorCreateView, AuthorUpdateView, soft_delete_author,\
-                         BookListView, BookDetailView, BookCreateView, BookUpdateView, BookDeleteView, UserDetailView
+                         BookListView, BookDetailView, BookCreateView, BookUpdateView, BookDeleteView, UserDetailView,\
+                         UserListView, ReviewCreateView
 from accounts.views import login_view, logout_view
 
 urlpatterns = [
@@ -36,6 +37,8 @@ urlpatterns = [
     path('books/<int:pk>/delete', BookDeleteView.as_view(), name='book_delete'),
     path('books/<int:pk>/update', BookUpdateView.as_view(), name='book_update'),
     path('users/<int:pk>', UserDetailView.as_view(), name='user_detail'),
+    path('users', UserListView.as_view(), name='user_list'),
+    path('reviews/create', ReviewCreateView.as_view(), name='review_create'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

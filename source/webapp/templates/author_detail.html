@@ -16,6 +16,8 @@
     <h4>Книги:</h4>
     {% for book in author.books.all %}
         <h5 class="ml-5">{{ book.name }} ({{ book.year_publishing }})</h5>
+        <button type="button" class="btn btn-primary" id="issue_submit">Добавить на книжную полку</button>
+        <hr>
     {% endfor %}
 {#    <h5>работа</h5>#}
 {#    {% for work in project.work.all %}#}

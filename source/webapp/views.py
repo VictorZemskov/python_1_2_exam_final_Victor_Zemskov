@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
-from webapp.models import Author, Book, BookShelf, UserInfo
+from webapp.models import Author, Book, BookShelf, UserInfo, Review
 from django.http import HttpResponseRedirect, JsonResponse
-from webapp.forms import AuthorForm, BookForm, BookShelfForm
+from webapp.forms import AuthorForm, BookForm, ReviewForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404
 
@@ -79,18 +79,16 @@ class UserDetailView(DetailView):
     template_name = 'user_detail.html'
 
 
-# class BookshelfAddAjaxView(CreateView):
-#     model = BookShelf
-#     form_class = BookShelfForm
-#
-#     def form_valid(self, form):
-#         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
-#         form.instance.project = project
-#         project_issue = form.save()
-#         return JsonResponse({
-#             'project': project_issue.project.project,
-#             'title': project_issue.title,
-#             'description': project_issue.description,
-#             'status': project_issue.description,
-#             'pk': project_issue.pk
-#         })
+class UserListView(ListView):
+    model = UserInfo
+    template_name = 'user_list.html'
+
+    def get_queryset(self):
+        return UserInfo.objects.filter(is_deleted=False)
+
+
+class ReviewCreateView(CreateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = 'book_detail.html'
+    success_url = reverse_lazy('book_detail')
