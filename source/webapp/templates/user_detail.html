@@ -1,15 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Книга{% endblock %}
+{% block title %}Пользователь{% endblock %}
 {% block menu %}
 
 {% endblock %}
 {% block content %}
-    <h1>{{ book.name }}</h1>
-    <p>Автор - {{ book.author }}</p>
-    <p>Год издания - {{ book.year_publishing }}</p>
-    <p>Файл - {{ book.file }}</p>
-    <p>Обложка - {{ book.cover }}</p>
-    <p>Описание - {{ book.cover }}</p>
+    <h1>{{ user.name }}</h1>
+    <p>{{ user.email }}</p>
 
 {#    <h5>Задачи <a href="{% url 'issue_create' project.pk %}">(+)</a></h5>#}
 {#    <ul id="issue_list">#}

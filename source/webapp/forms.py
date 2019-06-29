@@ -1,5 +1,5 @@
 from django import forms
-from webapp.models import Author, Book
+from webapp.models import Author, Book, BookShelf
 
 # class ProjectSearchForm(forms.Form):
 #     project_name = forms.CharField(max_length=50, required=False, label="Имя проекта")
@@ -16,7 +16,7 @@ class BookForm(forms.ModelForm):
         exclude = ['is_deleted']
 
 
-# class IssueForm(forms.ModelForm):
-#     class Meta:
-#         model = Issue
-#         exclude = ['project']
+class BookShelfForm(forms.ModelForm):
+    class Meta:
+        model = BookShelf
+        exclude = ['is_deleted']

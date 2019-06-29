@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Книги{% endblock %}
+{% block menu %}
+    <li class="nav-item"><a href="{% url 'book_create' %}" class="nav-link">Добавить Книгу</a></li>
+{% endblock %}
+{% block content %}
+    <div class="mt-3">
+{#        <form action="{% url 'author_list' %}" method="get">#}
+{#            {% csrf_token %}#}
+{#            {{ form.project_name.label }}: {{ form.project_name }}#}
+{#            <button type="submit" class="btn btn-primary">Искать</button>#}
+{#        </form>#}
+    </div>
+    <div class="mt-3">
+        {% for book in book_list %}
+            <h4><a href="{% url 'book_detail' book.pk %}">{{ book.name }}</a></h4>
+            <p>{{ book.year_publishing }}</p>
+            <p><a href="{% url 'author_detail' book.author.pk %}">{{ book.author }}</a></p>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'book_update' book.pk %}">Изменить</a>
+                <a href="{% url 'book_delete' book.pk %}">Удалить</a>
+            {% endif %}
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -21,12 +21,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             {% if request.user.is_authenticated %}
-                <li class="nav-item navbar-text">Привет, {{ request.user.username }}!</li>
+                <li class="nav-item navbar-text">Привет, <a href="{% url 'user_detail' user.pk %}"> {{ request.user.username }}!</a></li>
                 <li class="nav-item">
                     <a href="{% url 'logout' %}" class="nav-link">выход</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'author_list' %}" class="nav-link">На главную</a>
+                    <a href="{% url 'book_list' %}" class="nav-link">На главную</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'author_list' %}" class="nav-link">Авторы</a>
                 </li>
                 {% block menu %}{% endblock %}
             {% else %}
