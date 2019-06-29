@@ -29,5 +29,12 @@ class BookShelf(models.Model):
     book = models.ManyToManyField(Book, related_name='book_shelfs', verbose_name='Книги')
 
 
+class Review(models.Model):
+    book = models.ManyToManyField(Book, related_name='reviews', verbose_name='Книги')
+    user = models.ManyToManyField(UserInfo, related_name='reviews', verbose_name='Пользователи')
+    сontent = models.TextField(max_length=2000, verbose_name='Отзыв')
+    creation_date = models.DateTimeField(verbose_name='Дата создания')
+
+
 
 
