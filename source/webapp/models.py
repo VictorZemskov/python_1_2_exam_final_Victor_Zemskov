@@ -24,5 +24,10 @@ class Book(models.Model):
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
 
 
+class BookShelf(models.Model):
+    user = models.ForeignKey(UserInfo, on_delete=models.CASCADE, related_name='book_shelfs', verbose_name='Пользователь')
+    book = models.ManyToManyField(Book, related_name='book_shelfs', verbose_name='Книги')
+
+
 
 
